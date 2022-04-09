@@ -1,0 +1,101 @@
+.login-page , .login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.login-container {
+    margin-top: 80px;
+}
+.login-user-btn {
+    background-color: transparent;
+    border: none;
+    animation: float infinite 2s;
+}
+.login-user-btn img {
+    width: 150px;
+}
+.no-animation {
+    animation: none;
+}
+.login-form {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+}
+.login-form div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-form div img {
+    width: 30px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px 0px 0px 10px;
+}
+.login-form div input {
+    margin: 5px 0px;
+    width: 250px;
+    height: 20px;
+    padding: 15px;
+    font-size: 16px;
+    font-family: 'Abel', sans-serif;
+    color: #5E6472;
+    outline: none;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    transition: 0.2s linear;
+}
+.login-form div input:focus {
+    transform: translateX(-3px);
+}
+.login-form-submit-btn {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 20px;
+    padding: 10px 20px;
+    width: 125px;
+    background-color: #00ED64;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+.login-form-submit-btn:hover {
+    width: 90px;
+    border-radius: 20px;
+}
+.login-form-submit-btn img {
+    position: absolute;
+    margin-left: 60px;
+    width: 20px;
+    transition: all 0.3s ease-in-out;
+}
+.login-form-submit-btn:hover  img{
+    margin-left: 75px;
+}
+
+.display-form {
+    display: flex;
+}
+
+@keyframes float {
+    0% { 
+        transform: translate(0,  0px); 
+    }
+    50%  { 
+        transform: translate(0, 10px); 
+    }
+    100%   { 
+        transform: translate(0, -0px); 
+    } 
+}
