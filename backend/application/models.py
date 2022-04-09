@@ -8,6 +8,7 @@ roles_users = db.Table('roles_users',
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    username = db.Column(db.String, unique = True, nullable = False)
     email = db.Column(db.String, unique = True, nullable = False)
     password = db.Column(db.String, nullable = False)
     active = db.Column(db.Boolean)
@@ -16,6 +17,7 @@ class User(db.Model, UserMixin):
 
     def get_security_payload(self):
         return {
+            "username":self.username,
             "id":self.id,
             "email":self.email,
         }
