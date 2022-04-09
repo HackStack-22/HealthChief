@@ -1,0 +1,23 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+.home-seth-img {
+    width: 50%;
+}
+.home-section-1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.home-section-1-left {
+    width: 500px;
+}
+.home-section-1-left h1 {
+    font-size: 40px;
+}
+.home-section-1-left p{
+    margin-top: 10px;
+    font-size: 20px;
+}
