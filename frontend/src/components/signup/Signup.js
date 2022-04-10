@@ -1,63 +1,60 @@
 import React from 'react';
-import './signin.css'
+import './signup.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
+    const navigate = useNavigate();
 
     function displayLoginForm() {
         document.querySelector(".signup-form").classList.toggle("display-form")
         document.querySelector(".signup-user-btn").classList.toggle("no-animation")
     }
 
-    function nextForm() {
-        var username = document.getElementById('username').value;
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-        if (!email || !username || !password) {
-            alert("Enter all the fields")
-        } else {
-            var elem1 = document.querySelector('.signup-form1')
-            elem1.style.display = "none";
-            var elem2 = document.querySelector('.signup-form2')
-            elem2.style.display = "flex"
-        }
-    }
+    // function nextForm() {
+    //     var username = document.getElementById('username').value;
+    //     var email = document.getElementById('email').value;
+    //     var password = document.getElementById('password').value;
+    //     if (!email || !username || !password) {
+    //         alert("Enter all the fields")
+    //     } else {
+    //         var elem1 = document.querySelector('.signup-form1')
+    //         elem1.style.display = "none";
+    //         var elem2 = document.querySelector('.signup-form2')
+    //         elem2.style.display = "flex"
+    //     }
+    // }
 
     function signUpUser() {
         var username = document.getElementById('username').value;
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
-        var gender = document.getElementById('gender').value;
-        var dob = document.getElementById('dob').value;
-        var weight = document.getElementById('weight').value;
-        var height = document.getElementById('height').value;
+        // var gender = document.getElementById('gender').value;
+        // var dob = document.getElementById('dob').value;
+        // var weight = document.getElementById('weight').value;
+        // var height = document.getElementById('height').value;
 
-        if (!gender || !dob || !weight || !height) {
-            alert("Enter all the fields")
-        } else {
-
-            var details = {
-                email: email,
-                password: password,
-                username: username,
-                gender: gender,
-                dob: dob,
-                weight: weight,
-                height: height,
-            }
-            // fetch("https://healthchief.herokuapp.com/register", {
-            //     "method": "POST",
-            //     "headers": {
-            //         "Content-Type": "application/json"
-            //     },
-            //     "body": JSON.stringify(details)
-            // })
-            //     .then(response => {
-            //         console.log(response);
-            //     })
-            //     .catch(err => {
-            //         console.error(err);
-            //     });
+        var details = {
+            email: email,
+            password: password,
+            username: username
         }
+        fetch("https://healthchief.herokuapp.com/register", {
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": JSON.stringify(details)
+        })
+            .then(response => {
+                console.log(response);
+                if(response.status === 200) {
+                    navigate("/login", { replace: true });
+                }
+            })
+            .catch(err => {
+                console.error(err);
+            });
+
     }
 
     return (
@@ -77,13 +74,13 @@ export default function Signup() {
                         <img src={require('../../assets/login-page/password.gif')} alt='' />
                         <input type='password' id='password' placeholder='Password' required />
                     </div>
-                    <button onClick={nextForm} className='signup-form-submit-btn'>Next<img src={require('../../assets/arrow-right.png')} alt='' /></button>
-                    {/* <button onClick={signUpUser} className='signup-form-submit-btn'>Next<img src={require('../../assets/arrow-right.png')} alt=''/></button> */}
+                    {/* <button onClick={nextForm} className='signup-form-submit-btn'>Next<img src={require('../../assets/arrow-right.png')} alt='' /></button> */}
+                    <button onClick={signUpUser} className='signup-form-submit-btn'>Next<img src={require('../../assets/arrow-right.png')} alt=''/></button>
                 </div>
-                <div className='signup-form signup-form2' >
+                {/* <div className='signup-form signup-form2' >
                     <div>
                         <img src={require('../../assets/login-page/user.gif')} alt='' />
-                        <input type='text' id='gender' placeholder='Gender' required/>
+                        <input type='text' id='gender' placeholder='Gender' required />
                     </div>
                     <div>
                         <img src={require('../../assets/login-page/user.gif')} alt='' />
@@ -91,15 +88,15 @@ export default function Signup() {
                     </div>
                     <div>
                         <img src={require('../../assets/login-page/password.gif')} alt='' />
-                        <input type='number' id='weight' placeholder='Weight in kilograms' required/>
+                        <input type='number' id='weight' placeholder='Weight in kilograms' required />
                     </div>
                     <div>
                         <img src={require('../../assets/login-page/password.gif')} alt='' />
-                        <input type='number' id='height' placeholder='Height in centimeters' required/>
+                        <input type='number' id='height' placeholder='Height in centimeters' required />
                     </div>
-                    {/* <button onClick={nextForm} className='signup-form-submit-btn'>Next<img src={require('../../assets/arrow-right.png')} alt='' /></button> */}
+                
                     <button onClick={signUpUser} className='signup-form-submit-btn2'>Submit<img src={require('../../assets/arrow-right.png')} alt='' /></button>
-                </div>
+                </div> */}
             </div>
         </div>
     )
