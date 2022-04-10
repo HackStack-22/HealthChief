@@ -1,11 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
+
 * {
     padding: 0px;
     margin: 0px;
 }
-.home-seth-img {
-    width: 50%;
+.home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.home-doc-img {
+    width: 60%;
 }
 .home-section-1 {
+    margin-top: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -20,4 +32,77 @@
 .home-section-1-left p{
     margin-top: 10px;
     font-size: 20px;
+}
+
+.home-section-2 {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.home-section-2-right {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.home-section-2-right-sub {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.hs2-icon {
+    width: 50px;
+}
+.home-section-2-right-sub div {
+    width: 400px;
+    border-top: 1px solid black;
+    padding: 20px 10px;
+    margin: 10px;
+}
+.home-section-2-right-sub div h2 {
+    font-family: 'Beau Rivage', cursive;
+    font-size: 45px;
+}
+.home-section-2-right-sub div p {
+    font-family: 'Libre Baskerville', serif;
+}
+
+
+@media only screen and (max-width: 550px) {
+    .home-section-1-left {
+        width: 100%;
+        text-align: center;
+        font-size: 10px;
+    }
+    .home-section-1-left h1 {
+        font-size: 25px;
+    }
+    .home-section-1-left p {
+        font-size: 15px;
+    }
+    .home-section-2-right-sub div {
+        width: 100%;
+        padding: 20px 0px;
+        text-align: center;
+    }
+    .home-doc-img {
+        width: 100%;
+    }
+    .home-section-2-left h1 {
+        text-align: center;
+        font-size: 25px;
+    }
+    .home-section-2-right-sub div h2 {
+        font-size: 40px;
+        line-height: 30px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }
