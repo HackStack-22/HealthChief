@@ -5,9 +5,6 @@ import os
 
 import pickle
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
-
-scaler_s =  StandardScaler()
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 ml_models_dir = os.path.join(basedir, '../ml_models')
@@ -191,7 +188,6 @@ def asthma_predict():
         with open(os.path.join(ml_models_dir, 'model_asthma')) as f:
             model_asthma = pickle.load(f)
             
-    
     return 'Asthma Predict', 200
 
 
