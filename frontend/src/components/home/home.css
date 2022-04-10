@@ -24,6 +24,7 @@
     flex-wrap: wrap;
 }
 .home-section-1-left {
+    text-align: center;
     width: 500px;
 }
 .home-section-1-left h1 {
@@ -78,7 +79,6 @@
 @media only screen and (max-width: 550px) {
     .home-section-1-left {
         width: 100%;
-        text-align: center;
         font-size: 10px;
     }
     .home-section-1-left h1 {

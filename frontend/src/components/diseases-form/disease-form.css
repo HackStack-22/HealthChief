@@ -1,0 +1,62 @@
+.disease-form {
+    padding-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+.disease-form-container {
+    background-color: aqua;
+    border-radius: 20px;
+    padding: 0px 10px;
+    text-align: center;
+    margin-top: 20px;
+    width: 600px;
+}
+.disease-form-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 20px;
+    background-color: antiquewhite;
+    margin: 10px 0px;
+    padding: 20px 0px;
+}
+.disease-form-input label {
+    margin-top: 5px;
+}
+.disease-form-input input {
+    margin-top: 15px;
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 0px 5px;
+    text-align: center;
+}
+.check-btn {
+    margin: 0px 6px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: black;
+    background-color: #00ED64;
+    border: 2px solid black;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 10px;
+}
+.check-btn:hover {
+    border-radius: 20px;
+}
+@media only screen and (max-width: 500px) {
+    .disease-form-input input {
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 620px) {
+    .disease-form-container {
+        width: 95%;
+    }
+}
