@@ -27,13 +27,14 @@ export default function Login() {
             },
             "body": JSON.stringify(details)
         })
+            .then(response => response.json())
             .then(response => {
-                if (response.status === 400) {
-                    const loggedInUser = localStorage.getItem("email");
+                if (response) {
+                    const loggedInUser = response.response.user.username;
                     if (loggedInUser) {
                         localStorage.clear();
                     }
-                    localStorage.setItem('email', email)
+                    localStorage.setItem('username', loggedInUser)
                     navigate("/", { replace: true });
                 } else {
                     alert("Enter the details correctly.")
@@ -41,6 +42,7 @@ export default function Login() {
             })
             .catch(err => {
                 console.error("error: " + err);
+                alert("Enter the details correctly.")
             });
     }
     // function logout() {
