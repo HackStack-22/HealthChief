@@ -25,6 +25,18 @@ export default function Header() {
     };
 
     function logOutUser() {
+        fetch("https://healthchief.herokuapp.com/logout", {
+            "method": "GET",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+        })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.error("error: " + err);
+            });
         const loggedInUser = localStorage.getItem("email");
         if (loggedInUser) {
             localStorage.clear();
@@ -64,14 +76,11 @@ export default function Header() {
 
                     <div className='header-navlinks'>
                         <a href='/'>Home</a>
-                        <a href='/'>Home</a>
-                        <a href='/'>Home</a>
-                        <a href='/'>Home</a>
+                        <a href='/diseases-list'>Health Checks</a>
                     </div>
                 </div>
                 <hr className='bottom-hr' />
             </header>
-
 
             {isOpen && (
                 <div className='header-mobile'>
@@ -90,9 +99,7 @@ export default function Header() {
                     )}
 
                     <a href='/'>Home</a>
-                    <a href='/'>Home</a>
-                    <a href='/'>Home</a>
-                    <a href='/'>Home</a>
+                    <a href='/diseases-list'>Health Checks</a>
                 </div>
             )}
         </>
