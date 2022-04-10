@@ -71,25 +71,52 @@ def heart_failure_predict():
             columns=['Age', 'Sex', 'ChestPainType', 'RestingBP', 'Cholesterol', 'FastingBS', 'RestingECG', 'MaxHR', 'ExerciseAngina', 'OldPeak', 'ST_Slope']
         )
         
-        X = pd.get_dummies(df, columns=['ChestPainType','Sex','RestingECG','ExerciseAngina','ST_Slope'])
+        male_female_cols=["Sex"]
+        for cols in male_female_cols:
+            df[cols] = df[cols].map({
+                'M' : 1, 
+                'F'  : 0
+            })
+
+        slope=["ST_Slope"]
+        for cols in slope:
+            df[cols] = df[cols].map({
+                    'Up' : 1, 
+                    'Flat'  : 0,
+                    'Down' : 2
+            })
+
+        excer=["ExerciseAngina"]
+        for cols in excer:
+                df[cols] = df[cols].map({
+                    'Y' : 1, 
+                    'N'  : 0
+            })
+
+        chest=["ChestPainType"]
+        for cols in chest:
+                df[cols] = df[cols].map({
+                    'TA' : 1, 
+                    'ATA'  : 0,
+                    'NAP':2,
+                    'ASY':3
+            })
+
+        rest=["RestingECG"]
+        for cols in rest:
+            df[cols] = df[cols].map({
+                    'Normal' : 1, 
+                    'ST'  : 0,
+                    'LVH' : 2
+            })   
         
-        # X[['Age','RestingBP','Cholesterol', 'FastingBS','OldPeak','MaxHR']] = pd.DataFrame(scaler_s.fit_transform(
-        #             X[['Age','RestingBP','Cholesterol', 'FastingBS','OldPeak','MaxHR']]))
-        
-        # X = X.iloc[0]
-        
-        # m_jlib = joblib.load(os.path.join(ml_models_dir, 'Heart_failure.pkl'))
-        # predict=m_jlib.predict([[-1.433140,0.410909,0.825070,-0.551341,1.382928,-0.832432,0,1,0,0,0,1,0,1,0,1,0,0,0,1]])
-        # return str(predict),200
-        return str(0), 200
+        with open(os.path.join(ml_models_dir, 'heart_fail.pkl'), 'rb') as f:
+            heart_fail = pickle.load(f)
+            predict = heart_fail.predict(np.array([df.iloc[0]]))
+        return str(predict[0]), 200
+
     return 'Heart Failure Predict',200
 
-@app.route("/ml_model/hepatitis_c/predict", methods = ["GET", "POST"])
-def hepatitis_c_predict():
-    if request.method == 'POST':
-        json = request.json
-    
-    return 'Hepatitis C Predict', 200
 
 def parse_json(json):
     HeartDisease = json.get('heart-disease')
