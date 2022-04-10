@@ -17,7 +17,6 @@
     width: 60%;
 }
 .home-section-1 {
-    margin-top: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -75,8 +74,15 @@
     font-family: 'Libre Baskerville', serif;
 }
 
+.this-top {
+    margin-top: 50px;
+}
+
 
 @media only screen and (max-width: 550px) {
+    .home-section-1 {
+        margin-top: 30px;
+    }
     .home-section-1-left {
         width: 100%;
         font-size: 10px;

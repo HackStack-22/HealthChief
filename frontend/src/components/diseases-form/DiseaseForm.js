@@ -11,7 +11,9 @@ export default function DiseaseForm(props) {
     var endpoints;
     var result = '';
     var x = 0;
-    const loggedInUser = localStorage.getItem("username");
+    var loggedInUser = localStorage.getItem("username");
+    if(!loggedInUser)
+        loggedInUser = ""
 
     function submitResult() {
 
@@ -22,7 +24,7 @@ export default function DiseaseForm(props) {
                 fields = "{"
 
             fields = fields + '"' + formName[index] + '":' + '"' + element.value
-            if (index != allInputs.length - 1)
+            if (index !== allInputs.length - 1)
                 fields = fields + '",'
 
             if (index === allInputs.length - 1)
@@ -41,9 +43,9 @@ export default function DiseaseForm(props) {
             .then(response => {
                 console.log(response);
                 if (response === 0) {
-                    result = "Sorry you have tested positive."
+                    result = `${loggedInUser} You dont have ${disease}.`
                 } else {
-                    result = "Happy to say that you have tested negative."
+                    result = `${loggedInUser} You have ${disease}.`
                 }
                 alert(result)
             })
@@ -56,7 +58,7 @@ export default function DiseaseForm(props) {
         <div className='disease-form'>
             <h1>{disease}</h1>
             <div className='disease-form-container'>
-                {Diseases.map((ele) => {
+                {Diseases.forEach((ele) => {
                     if (ele.name === disease) {
                         fname = ele.fname
                         ftype = ele.ftype
@@ -67,7 +69,7 @@ export default function DiseaseForm(props) {
                 })}
 
                 {fname.map((ele, index) => {
-                    if (ftype[index] != 'option') {
+                    if (ftype[index] !== 'option') {
                         return (
                             <div className='disease-form-input'>
                                 <h2>{ele}</h2>

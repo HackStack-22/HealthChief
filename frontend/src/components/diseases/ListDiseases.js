@@ -6,12 +6,14 @@ export default function ListDiseases() {
     console.log(Diseases)
     return (
         <div className='list-diseases'>
-            {Diseases.map((element) => {
-                var href = element.name.replace(" ", "-").toLowerCase()
-                return (
-                    <a href={"/diseases-list/"+href}>{element.name}</a>
-                )
-            })}
+            <div className='list-diseases-container'>
+                {Diseases.map((element) => {
+                    var href = element.name.replace(" ", "-").toLowerCase()
+                    return (
+                        <a href={"/diseases-list/" + href}>{element.name}</a>
+                    )
+                })}
+            </div>
         </div>
     )
 }
