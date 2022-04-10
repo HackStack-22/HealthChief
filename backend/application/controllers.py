@@ -20,15 +20,15 @@ def test():
 @app.route("/ml_model/diabetes/predict", methods = ["GET", "POST"])
 def diabetes_predict():
     if request.method == 'POST':
-        form = request.form
-        Pregnancies = form.get('pregnancies')
-        Glucose = form.get('glucose')
-        BloodPressure = form.get('blood-pressure')
-        SkinThickness = form.get('skin-thickness')
-        Insulin = form.get('insulin')
-        BMI = form.get('bmi')
-        DiabetesPedigreeFunction = form.get('diabetes-pedigree-function')
-        Age = form.get('age')
+        json = request.json
+        Pregnancies = json.get('pregnancies')
+        Glucose = json.get('glucose')
+        BloodPressure = json.get('blood-pressure')
+        SkinThickness = json.get('skin-thickness')
+        Insulin = json.get('insulin')
+        BMI = json.get('bmi')
+        DiabetesPedigreeFunction = json.get('diabetes-pedigree-function')
+        Age = json.get('age')
         
         arr = [Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]
         
@@ -90,6 +90,31 @@ def hepatitis_c_predict():
     
     return 'Hepatitis C Predict', 200
 
+def parse_form(form):
+    HeartDisease = form.get('heart-disease')
+    BMI = form.get('bmi')
+    Smoking = form.get('smoking')
+    AlcoholDrinking = form.get('alcohol-drinking')
+    Stroke = form.get('stroke')
+    PhysicalHealth = form.get('physical-health')
+    MentalHealth = form.get('mental-health')
+    DiffWalking = form.get('diff-walking')
+    Sex = form.get('sex')
+    AgeCategory = form.get('age-category')
+    Race = form.get('race')
+    Diabetic = form.get('diabetic')
+    PhysicalActivity = form.get('physical-activity')
+    GenHealth = form.get('gen-health')
+    SleepTime = form.get('sleep-time')
+
+    arr = [HeartDisease, BMI, Smoking, AlcoholDrinking, Stroke, PhysicalHealth, MentalHealth, DiffWalking, Sex, AgeCategory, Race, Diabetic, PhysicalActivity, GenHealth, SleepTime]
+
+    df = pd.DataFrame(
+        [arr],
+        columns=['HeartDisease', 'BMI', 'Smoking', 'AlcoholDrinking', 'Stroke', 'PhysicalHealth', 'MentalHealth', 'DiffWalking', 'Sex', 'AgeCategory', 'Race', 'Diabetic', 'PhysicalActivity', 'GenHealth', 'SleepTime']
+    )
+    
+    return df            
 
 
 def data_pipeline(df):
