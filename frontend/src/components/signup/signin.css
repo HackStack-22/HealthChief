@@ -20,16 +20,16 @@
     animation: none;
 }
 .signup-form {
+    width: 400px;
     display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
-    padding: 20px 30px;
+    padding: 20px 10px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(11, 11, 11, 0.5);
     backdrop-filter: blur(8px);
-    transition: opacity 1s;
 }
 .signup-form div {
     display: flex;
@@ -134,4 +134,17 @@
     100%   { 
         transform: translate(0, -0px); 
     } 
+}
+
+@media only screen and (max-width: 500px) {
+    .signup-container {
+        width: 90%;
+        margin: 0px;
+    }
+    .signup-form {
+        width: 90%;
+    }
+    .signup-form div input {
+        width: 100%;
+    }
 }

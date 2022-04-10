@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
 body {
     margin: 0px;
-    background-color: #80ff72;
+    background-color:aliceblue;
     /* background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%); */
     /* background-repeat: no-repeat; */
     font-family: 'Roboto', sans-serif;
     /* height: 200vh; */
 }
 .top {
-    padding-top: 150px;
+    padding-top: 100px;
 }
