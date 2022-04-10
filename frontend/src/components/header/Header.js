@@ -77,7 +77,6 @@ export default function Header() {
                     <div className='header-navlinks'>
                         <a href='/'>Home</a>
                         <a href='/diseases-list'>Health Checks</a>
-                        <a href='/hospitals'>Hospitals</a>
                     </div>
                 </div>
                 <hr className='bottom-hr' />
@@ -101,7 +100,6 @@ export default function Header() {
 
                     <a href='/'>Home</a>
                     <a href='/diseases-list'>Health Checks</a>
-                    <a href='/hospitals'>Hospitals</a>
                 </div>
             )}
         </>

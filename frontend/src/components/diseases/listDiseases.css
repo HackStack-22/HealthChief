@@ -1,11 +1,14 @@
 .list-diseases {
+    height: 67.3vh;
+}
+.list-diseases-container {
     padding-top: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
-.list-diseases a {
+.list-diseases-container a {
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
@@ -17,8 +20,16 @@
     padding: 10px 20px;
     transition: all 0.3s ease-in-out;
 }
-.list-diseases a:hover {
+.list-diseases-container a:hover {
     background-color: greenyellow;
     border: 2px solid black;
     color: black;
+    border-radius: 20px;
+}
+
+@media only screen and (max-width: 520px) {
+    .list-diseases-container {
+        padding-top: 100px;
+        padding-bottom: 110px;
+    }
 }

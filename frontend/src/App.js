@@ -9,7 +9,6 @@ import Footer from './components/footer/Footer';
 import ListDiseases from './components/diseases/ListDiseases';
 import { Diseases } from './components/data/diseases';
 import DiseaseForm from './components/diseases-form/DiseaseForm';
-import HospitalsNM from './components/hospitals/HospitalsNM';
 
 export default function App() {
     return (
@@ -20,7 +19,6 @@ export default function App() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/diseases-list' element={<ListDiseases />} />
-                <Route path='/hospitals' element={<HospitalsNM />} />
                 {Diseases.map((ele) => {
                     var href = ele.name.replace(" ", "-").toLowerCase()
                     return (

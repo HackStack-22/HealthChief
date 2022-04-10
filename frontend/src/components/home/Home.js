@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './home.css';
-import { useNavigate } from 'react-router-dom';
+import CovidData from './Covid';
 // document.location.reload()
 export default function Home() {
 
@@ -13,6 +13,7 @@ export default function Home() {
         }
     }
 
+    
     return (
         <>
             <div className='home-page top'>
@@ -90,6 +91,13 @@ export default function Home() {
                         </div>
                     </div>
 
+                </div>
+
+                <div className='home-section-1 this-top'>
+                    <div className='home-section-1-left'>
+                        <h1>Live COVID-19 Cases in your Country</h1>
+                    </div>
+                    <CovidData />
                 </div>
             </div>
         </>

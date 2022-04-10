@@ -17,7 +17,7 @@ export default function Footer() {
                     </div>
                     <div>
                         <h2>Google Pay</h2>
-                        <img src={require('../../assets/footer/qr-code.png')} />
+                        <img src={require('../../assets/footer/qr-code.png')} alt='' />
                     </div>
 
                 </div>
@@ -25,11 +25,7 @@ export default function Footer() {
             <footer className='footer'>
                 <div className='footer-container'>
                     <div>
-                        footer
-                    </div>
-
-                    <div>
-                        <p>Follow HealthChief</p>
+                        <h1>Follow HealthChief</h1>
                         <div>
                             <i className="fa fa-facebook social-media"></i>
                             <i className="fa fa-instagram social-media"></i>
