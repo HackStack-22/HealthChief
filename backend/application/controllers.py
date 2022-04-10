@@ -2,6 +2,7 @@ from main import app as app
 from flask import request, render_template, redirect, url_for
 import joblib
 import os
+import numpy as np
 
 import pickle
 import pandas as pd
@@ -49,18 +50,18 @@ def diabetes_predict():
 @app.route("/ml_model/heart_failure/predict", methods = ["GET","POST"])
 def heart_failure_predict():
     if request.method == 'POST':
-        form = request.form
-        Age = form.get('age')
-        Sex = form.get('sex')
-        ChestPainType = form.get('chest-pain-type')
-        RestingBP = form.get('resting-bp')
-        Cholesterol = form.get('cholesterol')
-        FastingBS = form.get('fasting-bs')
-        RestingECG = form.get('resting-ecg')
-        MaxHR = form.get('max-hr')
-        ExerciseAngina = form.get('exercise-angina')
-        OldPeak = form.get('old-peak')
-        ST_Slope = form.get('st-slope')
+        json = request.json
+        Age = json.get('age')
+        Sex = json.get('sex')
+        ChestPainType = json.get('chest-pain-type')
+        RestingBP = json.get('resting-bp')
+        Cholesterol = json.get('cholesterol')
+        FastingBS = json.get('fasting-bs')
+        RestingECG = json.get('resting-ecg')
+        MaxHR = json.get('max-hr')
+        ExerciseAngina = json.get('exercise-angina')
+        OldPeak = json.get('old-peak')
+        ST_Slope = json.get('st-slope')
         
         arr = [Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, OldPeak, ST_Slope]
         print(arr)
@@ -86,26 +87,26 @@ def heart_failure_predict():
 @app.route("/ml_model/hepatitis_c/predict", methods = ["GET", "POST"])
 def hepatitis_c_predict():
     if request.method == 'POST':
-        form = request.form
+        json = request.json
     
     return 'Hepatitis C Predict', 200
 
-def parse_form(form):
-    HeartDisease = form.get('heart-disease')
-    BMI = form.get('bmi')
-    Smoking = form.get('smoking')
-    AlcoholDrinking = form.get('alcohol-drinking')
-    Stroke = form.get('stroke')
-    PhysicalHealth = form.get('physical-health')
-    MentalHealth = form.get('mental-health')
-    DiffWalking = form.get('diff-walking')
-    Sex = form.get('sex')
-    AgeCategory = form.get('age-category')
-    Race = form.get('race')
-    Diabetic = form.get('diabetic')
-    PhysicalActivity = form.get('physical-activity')
-    GenHealth = form.get('gen-health')
-    SleepTime = form.get('sleep-time')
+def parse_json(json):
+    HeartDisease = json.get('heart-disease')
+    BMI = json.get('bmi')
+    Smoking = json.get('smoking')
+    AlcoholDrinking = json.get('alcohol-drinking')
+    Stroke = json.get('stroke')
+    PhysicalHealth = json.get('physical-health')
+    MentalHealth = json.get('mental-health')
+    DiffWalking = json.get('diff-walking')
+    Sex = json.get('sex')
+    AgeCategory = json.get('age-category')
+    Race = json.get('race')
+    Diabetic = json.get('diabetic')
+    PhysicalActivity = json.get('physical-activity')
+    GenHealth = json.get('gen-health')
+    SleepTime = json.get('sleep-time')
 
     arr = [HeartDisease, BMI, Smoking, AlcoholDrinking, Stroke, PhysicalHealth, MentalHealth, DiffWalking, Sex, AgeCategory, Race, Diabetic, PhysicalActivity, GenHealth, SleepTime]
 
@@ -114,7 +115,7 @@ def parse_form(form):
         columns=['HeartDisease', 'BMI', 'Smoking', 'AlcoholDrinking', 'Stroke', 'PhysicalHealth', 'MentalHealth', 'DiffWalking', 'Sex', 'AgeCategory', 'Race', 'Diabetic', 'PhysicalActivity', 'GenHealth', 'SleepTime']
     )
     
-    return df            
+    return df
 
 
 def data_pipeline(df):
@@ -186,55 +187,46 @@ def data_pipeline(df):
 @app.route("/ml_model/asthma/predict", methods = ["GET", "POST"])
 def asthma_predict():
     if request.method == 'POST':
-        form = request.form
-        HeartDisease = form.get('heart-disease')
-        BMI = form.get('bmi')
-        Smoking = form.get('smoking')
-        AlcoholDrinking = form.get('alcohol-drinking')
-        Stroke = form.get('stroke')
-        PhysicalHealth = form.get('physical-health')
-        MentalHealth = form.get('mental-health')
-        DiffWalking = form.get('diff-walking')
-        Sex = form.get('sex')
-        AgeCategory = form.get('age-category')
-        Race = form.get('race')
-        Diabetic = form.get('diabetic')
-        PhysicalActivity = form.get('physical-activity')
-        GenHealth = form.get('gen-health')
-        SleepTime = form.get('sleep-time')
-        
-        arr = [HeartDisease, BMI, Smoking, AlcoholDrinking, Stroke, PhysicalHealth, MentalHealth, DiffWalking, Sex, AgeCategory, Race, Diabetic, PhysicalActivity, GenHealth, SleepTime]
-        
-        df = pd.DataFrame(
-            [arr],
-            columns=['HeartDisease', 'BMI', 'Smoking', 'AlcoholDrinking', 'Stroke', 'PhysicalHealth', 'MentalHealth', 'DiffWalking', 'Sex', 'AgeCategory', 'Race', 'Diabetic', 'PhysicalActivity', 'GenHealth', 'SleepTime']
-        )        
-                
-        with open(os.path.join(ml_models_dir, 'model_asthma')) as f:
+        json = request.json
+        df = parse_json(json)
+        df = data_pipeline(df)
+        print(df)
+        predict = None
+        with open(os.path.join(ml_models_dir, 'model_asthma'), 'rb') as f:
             model_asthma = pickle.load(f)
-            
+            predict = model_asthma.predict(np.array([df.iloc[0]]))
+        return str(predict[0]), 200
     return 'Asthma Predict', 200
 
 
-@app.route("/ml_model/kidney/predict", methods = ["GET", "POST"])
+@app.route("/ml_model/kidney_disease/predict", methods = ["GET", "POST"])
 def kidney_predict():
     if request.method == 'POST':
-        form = request.form
-        
-        with open(os.path.join(ml_models_dir, 'model_kidney')) as f:
+        json = request.json
+        df = parse_json(json)
+        df = data_pipeline(df)
+        print(df)
+        predict = None
+        with open(os.path.join(ml_models_dir, 'model_kidney'), 'rb') as f:
             model_kidney = pickle.load(f)
+            predict = model_kidney.predict(np.array([df.iloc[0]]))
+        return str(predict[0]), 200
     
     return 'Kidney Predict', 200
 
 
 # Skin Cancer
-@app.route("/ml_model/skin/predict", methods = ["GET", "POST"])
+@app.route("/ml_model/skin_cancer/predict", methods = ["GET", "POST"])
 def skin_predict():
     if request.method == 'POST':
-        form = request.form
-        
-    with open(os.path.join(ml_models_dir, 'model_skin')) as f:
-        model_skin = pickle.load(f)
-    print('loaded the model')
+        json = request.json
+        df = parse_json(json)
+        df = data_pipeline(df)
+        print(df)
+        predict = None
+        with open(os.path.join(ml_models_dir, 'model_skin'), 'rb') as f:
+            model_skin = pickle.load(f)
+            predict = model_skin.predict(np.array([df.iloc[0]]))
+        return str(predict[0]), 200
 
     return 'Skin Predict', 200
