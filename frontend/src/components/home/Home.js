@@ -4,7 +4,7 @@ import CovidData from './Covid';
 // document.location.reload()
 export default function Home() {
 
-    const loggedInUser = localStorage.getItem("email");
+    const loggedInUser = localStorage.getItem("username");
     if (loggedInUser) {
         // alert(loggedInUser)
         if (!window.location.hash) {
@@ -13,7 +13,6 @@ export default function Home() {
         }
     }
 
-    
     return (
         <>
             <div className='home-page top'>

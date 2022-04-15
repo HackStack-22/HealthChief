@@ -32,6 +32,10 @@ export default function Signup() {
         // var dob = document.getElementById('dob').value;
         // var weight = document.getElementById('weight').value;
         // var height = document.getElementById('height').value;
+        if(password.length <= 7) {
+            alert("Password should be atleast 8 characters")
+        }
+        else{
 
         var details = {
             email: email,
@@ -46,14 +50,19 @@ export default function Signup() {
             "body": JSON.stringify(details)
         })
             .then(response => {
-                console.log(response);
+                console.log(response.json());
                 if(response.status === 200) {
+                    alert("Successfully Registered")
                     navigate("/login", { replace: true });
+                } else {
+                    alert("Email or username already exist.")
                 }
             })
             .catch(err => {
                 console.error(err);
             });
+
+        }
 
     }
 

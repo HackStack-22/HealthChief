@@ -37,7 +37,7 @@ export default function Header() {
             .catch(err => {
                 console.error("error: " + err);
             });
-        const loggedInUser = localStorage.getItem("email");
+        const loggedInUser = localStorage.getItem("username");
         if (loggedInUser) {
             localStorage.clear();
             alert("Logged out successfully")
@@ -46,7 +46,7 @@ export default function Header() {
 
     }
     const [isOpen, setIsOpen] = useState(false);
-    const loggedInUser = localStorage.getItem("email");
+    const loggedInUser = localStorage.getItem("username");
 
     return (
         <>

@@ -31,9 +31,10 @@ export default function Login() {
             .then(response => {
                 if (response) {
                     const loggedInUser = response.response.user.username;
-                    if (loggedInUser) {
-                        localStorage.clear();
-                    }
+                    // alert(loggedInUser)
+                    // if (loggedInUser) {
+                    //     localStorage.clear();
+                    // }
                     localStorage.setItem('username', loggedInUser)
                     navigate("/", { replace: true });
                 } else {
